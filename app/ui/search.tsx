@@ -1,9 +1,7 @@
 'use client';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
-import { debounce } from '../utils/debounce';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-// import { debounce } from '../utils/debounce';
-// import {useDebouncedCallback} from 'use-debounce'
+import {useDebouncedCallback} from 'use-debounce'
 
 export default function Search({ placeholder }: { placeholder: string }) {
   const pathname = usePathname();
@@ -11,7 +9,7 @@ export default function Search({ placeholder }: { placeholder: string }) {
   const router = useRouter();
   const query = new URLSearchParams(searchParams);
 
-  const handleSearch = debounce((ter:string) => {
+  const handleSearch = useDebouncedCallback((ter:string) => {
     const val = ter;
     if (val) {
       query.set('query', val);
