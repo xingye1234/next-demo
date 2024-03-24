@@ -9,12 +9,12 @@ import {
 export default async function CustomersTable({
   customers,
 }: {
-  customers: FormattedCustomersTable[];
+  customers: any[];
 }) {
   // 
   return (
     <div className="w-full">
-      <h1 className={`${inter.className} mb-8 text-xl md:text-2xl`}>
+      <h1 className={`${inter.className} mb-8 text-2xl md:text-2xl`}>
         Customers
       </h1>
       <Search placeholder="Search customers..." />
