@@ -2,6 +2,7 @@ import { sql } from '@vercel/postgres';
 import {
   CustomerField,
   CustomersTableType,
+  CustomerAllField,
   InvoiceForm,
   InvoicesTable,
   LatestInvoiceRaw,
@@ -172,13 +173,8 @@ export async function fetchInvoiceById(id: string) {
 export async function fetchCustomers() {
   try {
     const data = await sql<CustomerField>`
-      SELECT
-        id,
-        name,
-      FROM customers
-      ORDER BY name ASC
+      SELECT * FROM customers
     `;
-
     const customers = data.rows;
     return customers;
   } catch (err) {
@@ -189,9 +185,8 @@ export async function fetchCustomers() {
 
 export async function fetchAllCustomers() {
   try {
-    const data = await sql<CustomerField>`
-      SELECT * 
-      FROM customers
+    const data = await sql<CustomerAllField>`
+      SELECT * FROM customers
     `;
 
     const customers = data.rows;
